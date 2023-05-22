@@ -8,11 +8,11 @@ This plugin provides syntax highlighting for `reqz` scripts
 
 ## Requirements
 
-Works with reqz version 0.13.0 and up.
+Works with reqz versions from 0.13.0 and up.
 
 ## Extension Settings
 
-None 
+None
 
 ## Known Issues
 

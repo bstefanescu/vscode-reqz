@@ -51,7 +51,7 @@
 	"repository": {
 		"comment": {
 			"name": "comment.line.reqz",
-			"match": "^\\s*(//.*)$"
+			"match": "^\\s*((//)|#).*$"
 		},
 		"comment-block": {
 			"name": "comment.block.reqz",
@@ -69,7 +69,7 @@
 		},
 		"header": {
 			"name": "meta.header-key.reqz",
-			"begin": "^\\s*([a-zA-Z]+(\\-?[a-zA-Z0-9]*))(:)",
+			"begin": "^\\s*([a-zA-Z]+(\\-?[a-zA-Z0-9]*)*)(:)",
 			"end": "$",
 			"captures": {
 				"1": {
@@ -136,7 +136,7 @@
 		"set_directive": {
 			"name": "meta.builtins.set.reqz",
 			"begin": "^\\s*(set)\\s+([a-zA-Z_$][$a-zA-Z_0-9]*)\\s*(\\??=)",
-			"end": "^(?=\\s*//)|(?=[@a-zA-Z][a-zA-Z0-9]*\\s+)",
+			"end": "^(?=\\s*((//)|#))|(?=[@a-zA-Z][a-zA-Z0-9]*\\s+)",
 			"beginCaptures": {
 				"1": {
 					"name": "keyword.control.set.reqz"
