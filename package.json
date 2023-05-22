@@ -5,6 +5,15 @@
   "version": "1.0.0",
   "publisher": "Vintners",
   "license": "MIT",
+  "homepage": "https://github.com/bstefanescu/vscode-reqz#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bstefanescu/vscode-reqz"
+  },
+  "bugs": {
+    "url": "https://github.com/bstefanescu/vscode-reqz/issues",
+    "email": "bogdan@vintners.co"
+  },
   "engines": {
     "vscode": "^1.78.0"
   },
