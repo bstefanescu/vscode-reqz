@@ -3,6 +3,7 @@
   "displayName": "Reqz DSL",
   "description": "Reqz tooling for vscode",
   "version": "1.0.0",
+  "publisher": "Vintners",
   "license": "MIT",
   "engines": {
     "vscode": "^1.78.0"
