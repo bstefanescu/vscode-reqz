@@ -1,6 +1,6 @@
 # vscode-reqz README
 
-This plugin provides syntax highlighting for `reqz` scripts 
+This plugin provides syntax highlighting for [reqz](http://github.com/bstefanescu/reqz) scripts.
 
 ## Features
 
