@@ -12,6 +12,9 @@
 			"include": "#set_directive"
 		},
 		{
+			"include": "#header_directive"
+		},
+		{
 			"include": "#builtin_directives"
 		},
 		{
@@ -39,13 +42,21 @@
 			"include": "#comment"
 		},
 		{
+			"include": "#comment-block"
+		},
+		{
 			"include": "#var_path"
 		}
 	],
 	"repository": {
 		"comment": {
 			"name": "comment.line.reqz",
-			"match": "^\\s*(#.*)$"
+			"match": "^\\s*(//.*)$"
+		},
+		"comment-block": {
+			"name": "comment.block.reqz",
+			"begin": "/\\*",
+			"end": "\\*/"
 		},
 		"directive": {
 			"name": "meta.directive.reqz",
@@ -107,10 +118,25 @@
 				}
 			]
 		},
+		"header_directive": {
+			"name": "meta.builtins.headet.reqz",
+			"match": "^\\s*(header)\\s+([a-zA-Z_][a-zA-Z_-]*)(:)",
+			"captures": {
+				"1": {
+					"name": "keyword.control.header.reqz"
+				},
+				"2": {
+					"name": "constant.other.header-key.reqz"
+				},
+				"3": {
+					"name": "punctuation.separator.key-value.reqz"
+				}
+			}
+		},
 		"set_directive": {
-			"name": "meta.builtins.reqz",
+			"name": "meta.builtins.set.reqz",
 			"begin": "^\\s*(set)\\s+([a-zA-Z_$][$a-zA-Z_0-9]*)\\s*(\\??=)",
-			"end": "^(?=\\s*#)|(?=[@a-zA-Z][a-zA-Z0-9]*\\s+)",
+			"end": "^(?=\\s*//)|(?=[@a-zA-Z][a-zA-Z0-9]*\\s+)",
 			"beginCaptures": {
 				"1": {
 					"name": "keyword.control.set.reqz"
@@ -131,10 +157,10 @@
 		},
 		"builtin_directives": {
 			"name": "meta.builtins.reqz",
-			"match": "^\\s*(var|prompt|query|body|headers|import|include|inspect|echo|run|using)\\b",
+			"match": "^\\s*(var|prompt|query|body|headers|import|include|inspect|echo|run)\\b",
 			"captures": {
 				"1": {
-					"name": "keyword.control.reqz"
+					"name": "keyword.control.directive.reqz"
 				}
 			}
 		},

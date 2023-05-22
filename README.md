@@ -8,7 +8,7 @@ This plugin provides syntax highlighting for `reqz` scripts
 
 ## Requirements
 
-None
+Works with reqz version 0.13.0 and up.
 
 ## Extension Settings
 
