@@ -1,0 +1,5 @@
+# Change Log
+
+## Release 1.0.0
+
+- The initial release provides syntax highlighting for `reqz` scripts.

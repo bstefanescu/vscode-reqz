@@ -1,0 +1,292 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "reqz",
+	"patterns": [
+		{
+			"include": "#header"
+		},
+		{
+			"include": "#request"
+		},
+		{
+			"include": "#set_directive"
+		},
+		{
+			"include": "#builtin_directives"
+		},
+		{
+			"include": "#keyword"
+		},
+		{
+			"include": "#directive"
+		},
+		{
+			"include": "#dq_string"
+		},
+		{
+			"include": "#sq_string"
+		},
+		{
+			"include": "#template_string"
+		},
+		{
+			"include": "#object_expr"
+		},
+		{
+			"include": "#array_expr"
+		},
+		{
+			"include": "#comment"
+		},
+		{
+			"include": "#var_path"
+		}
+	],
+	"repository": {
+		"comment": {
+			"name": "comment.line.reqz",
+			"match": "^\\s*(#.*)$"
+		},
+		"directive": {
+			"name": "meta.directive.reqz",
+			"match": "^\\s*(@?[a-zA-Z_][a-zA-Z_0-9]*)\\b",
+			"captures": {
+				"1": {
+					"name": "entity.name.function.reqz"
+				}
+			}
+		},
+		"header": {
+			"name": "meta.header-key.reqz",
+			"begin": "^\\s*([a-zA-Z]+(\\-?[a-zA-Z0-9]*))(:)",
+			"end": "$",
+			"captures": {
+				"1": {
+					"name": "constant.other.header-key.reqz"
+				},
+				"3": {
+					"name": "punctuation.separator.key-value.reqz"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#dq_string"
+				},
+				{
+					"include": "#ds_string"
+				},
+				{
+					"include": "#template_string"
+				},
+				{
+					"include": "#raw_template_string"
+				}
+			]
+		},
+		"request": {
+			"name": "meta.request.reqz",
+			"begin": "^\\s*(GET|POST|PUT|DELETE|HEAD|OPTIONS|TRACE|PATCH|CONNECT)\\b",
+			"end": "$",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.control.request.reqz"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#dq_string"
+				},
+				{
+					"include": "#ds_string"
+				},
+				{
+					"include": "#template_string"
+				},
+				{
+					"include": "#raw_template_string"
+				}
+			]
+		},
+		"set_directive": {
+			"name": "meta.builtins.reqz",
+			"begin": "^\\s*(set)\\s+([a-zA-Z_$][$a-zA-Z_0-9]*)\\s*(\\??=)",
+			"end": "^(?=\\s*#)|(?=[@a-zA-Z][a-zA-Z0-9]*\\s+)",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.control.set.reqz"
+				},
+				"2": {
+					"name": "variable.other.write.reqz"
+				},
+				"3": {
+					"name": "keyword.operator.assignment.optional.reqz"
+				}
+			},
+			"contentName": "meta.embedded.block.javascript",
+			"patterns": [
+				{
+					"include": "source.js"
+				}
+			]
+		},
+		"builtin_directives": {
+			"name": "meta.builtins.reqz",
+			"match": "^\\s*(var|prompt|query|body|headers|import|include|inspect|echo|run|using)\\b",
+			"captures": {
+				"1": {
+					"name": "keyword.control.reqz"
+				}
+			}
+		},
+		"keyword": {
+			"name": "meta.builtins.reqz",
+			"match": "\\b(using)\\b",
+			"captures": {
+				"1": {
+					"name": "keyword.control.reqz"
+				}
+			}
+		},
+		"array_expr": {
+			"begin": "\\[",
+			"end": "\\]",
+			"beginCaptures": {
+				"0": {
+					"name": "meta.brace.square.js"
+				}
+			},
+			"endCaptures": {
+				"0": {
+					"name": "meta.brace.square.js"
+				}
+			},
+			"name": "meta.array.literal.js",
+			"contentName": "meta.embedded.block.javascript",
+			"patterns": [
+				{
+					"include": "source.js"
+				}
+			]
+		},
+		"object_expr": {
+			"begin": "\\{",
+			"end": "\\}",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.definition.block.js"
+				}
+			},
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.block.js"
+				}
+			},
+			"name": "meta.objectliteral.js",
+			"contentName": "meta.embedded.block.javascript",
+			"patterns": [
+				{
+					"include": "source.js"
+				}
+			]
+		},
+		"var_name": {
+			"name": "variable.other.reqz",
+			"match": "(?<!\\.)([a-zA-Z_$][$a-zA-Z_0-9]*)(\\?)(?!\\.)",
+			"captures": {
+				"1": {
+					"name": "variable.other.reqz"
+				},
+				"2": {
+					"name": "punctuation.accessor.optional.reqz"
+				}
+			}
+		},
+		"var_path": {
+			"name": "variable.other.reqz",
+			"patterns": [
+				{
+					"name": "variable.other.object.property.reqz",
+					"match": "(?<=\\.)([a-zA-Z_$][$a-zA-Z_0-9]*)(?=\\.)"
+				},
+				{
+					"name": "variable.other.object.reqz",
+					"match": "(?<!\\.)([a-zA-Z_$][$a-zA-Z_0-9]*)(?=\\.)"
+				},
+				{
+					"name": "punctuation.accessor.reqz",
+					"match": "\\."
+				},
+				{
+					"include": "#var_name"
+				}
+			]
+		},
+		"dq_string": {
+			"name": "string.quoted.double.reqz",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.reqz",
+					"match": "\\\\."
+				}
+			]
+		},
+		"sq_string": {
+			"name": "string.quoted.single.reqz",
+			"begin": "'",
+			"end": "'",
+			"patterns": [
+				{
+					"name": "constant.character.escape.reqz",
+					"match": "\\\\."
+				}
+			]
+		},
+		"template_string_expr": {
+			"begin": "\\$\\{",
+			"end": "\\}",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.definition.template-expression.begin.reqz"
+				}
+			},
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.template-expression.end.reqz"
+				}
+			},
+			"contentName": "meta.embedded.block.javascript",
+			"patterns": [
+				{
+					"include": "source.js"
+				}
+			]
+		},
+		"template_string": {
+			"name": "string.template.reqz",
+			"begin": "`",
+			"end": "`",
+			"patterns": [
+				{
+					"name": "constant.character.escape.reqz",
+					"match": "\\\\."
+				},
+				{
+					"include": "#template_string_expr"
+				}
+			]
+		},
+		"raw_template_string": {
+			"name": "string.template.raw.reqz",
+			"begin": "(?<![\\\"'`])",
+			"end": "\\s|$",
+			"patterns": [
+				{
+					"include": "#template_string_expr"
+				}
+			]
+		}
+	},
+	"scopeName": "source.reqz"
+}
