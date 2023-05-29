@@ -24,3 +24,6 @@ None
 
 Initial release provides syntax highlighting
 
+### 1.1.0
+
+Added completion for built-in keywords

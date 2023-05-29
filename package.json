@@ -2,7 +2,7 @@
   "name": "vscode-reqz",
   "displayName": "Reqz DSL",
   "description": "Reqz tooling for vscode",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "publisher": "Vintners",
   "license": "MIT",
   "homepage": "https://github.com/bstefanescu/vscode-reqz#readme",
@@ -20,6 +20,14 @@
   "categories": [
     "Programming Languages"
   ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "clean": "rimraf ./out",
+    "compile": "npm run clean & tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
   "contributes": {
     "languages": [
       {
@@ -45,5 +53,12 @@
         }
       }
     ]
+  },
+  "devDependencies": {
+    "@types/node": "^20.2.3",
+    "@types/vscode": "^1.78.0",
+    "rimraf": "^5.0.1",
+    "tslint": "^6.1.3",
+    "typescript": "^5.0.4"
   }
 }
